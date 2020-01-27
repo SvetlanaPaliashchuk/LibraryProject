@@ -3,10 +3,10 @@ package by.javatr.dao.impl;
 import by.javatr.dao.IBookDAO;
 import by.javatr.dao.exception.DAOException;
 import by.javatr.entity.Book;
-import by.javatr.entity.User;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class BookDAOImpl implements IBookDAO {
@@ -15,108 +15,110 @@ public class BookDAOImpl implements IBookDAO {
 
     private static final BookDAOImpl INSTANCE = new BookDAOImpl();
 
+    private List<Book> bookList;
+
     private BookDAOImpl() {
+        try {
+            bookList = readAllBooks();
+        } catch (DAOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static BookDAOImpl getInstance() {
         return INSTANCE;
     }
 
-
     @Override
     public boolean addBook(Book book) throws DAOException {
         if (book == null) throw new DAOException("Please create the book!");
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true));) {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            String str;
-            while ((str = reader.readLine()) != null) {
-                if (str.contains("title=" + book.getTitle() + ", ") && str.contains("author=" + book.getAuthor() + ", "))
-                    throw new DAOException("The book with these parameters has already been added");
-            }
-            reader.close();
-            book.setId(generateID());
-            bw.write(book.toString());
-            bw.write("\n");
-        } catch (IOException e) {
-            throw new DAOException("Please check the file path");
+        for (Book b : bookList) {
+            if (book.getTitle().equals(b.getTitle()) && book.getAuthor().equals(b.getAuthor()))
+                throw new DAOException("This book is already in library");
         }
+        book.setId(generateID());
+        bookList.add(book);
+        updateBooksFile(bookList);
         return true;
     }
 
     @Override
     public boolean deleteBook(String id) throws DAOException {
         if (id == null) throw new DAOException("The book id cannot be null");
-        boolean isDeleted = false;
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            List<String> list = new ArrayList<>();
-            String str;
-            while ((str = reader.readLine()) != null) {
-                if (str.contains("id=" + id + ",")) isDeleted = true;
-                if (!str.contains("id=" + id + ",")) {
-                    list.add(str);
-                }
+        Book book;
+        Iterator<Book> it = bookList.iterator();
+        while (it.hasNext()) {
+            book = it.next();
+            String bookId = "" + book.getId();
+            if (bookId.equals(id)) {
+                it.remove();
+                updateBooksFile(bookList);
+                return true;
             }
-            BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
-            for (String s : list) {
-                bw.write(s);
-                bw.write("\n");
-            }
-            bw.close();
-        } catch (IOException e) {
-            throw new DAOException("Could not delete the user");
         }
-        return isDeleted;
+        return false;
     }
 
     @Override
-    public List<String> getAllBooks() throws DAOException {
-        List<String> list = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String str;
-            while ((str = reader.readLine()) != null) {
-                list.add(str);
-            }
-        } catch (IOException e) {
-            throw new DAOException("Please check the file name");
-        }
-
-        return list;
+    public List<Book> getAllBooks() {
+        return bookList;
     }
 
     @Override
-    public String getBookByTitle(String title) throws DAOException {
-        String str;
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            while ((str = reader.readLine()) != null) {
-                if (str.contains("title=" + title)) return str;
+    public String getBookByTitle(String title) {
+        String str = "";
+        for (Book book : bookList) {
+            if (book.getTitle().equals(title)) {
+                str = book.toString();
             }
-        } catch (IOException e) {
-            throw new DAOException("There is no such book");
         }
         return str;
     }
 
+    @Override
+    public List<Book> getBooksByAuthor(String author) {
+        List<Book> booksOfAuthor = new ArrayList<>();
+        for (Book book : bookList) {
+            if (book.getAuthor().equals(author))
+                booksOfAuthor.add(book);
+        }
+        return booksOfAuthor;
+    }
 
-    private int generateID() throws DAOException {
-        int count = 1;
+
+    //вспомогательные методы
+    private List<Book> readAllBooks() throws DAOException {
+        List<Book> bookList = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            if ((reader.readLine()) == null) return count;
             String str;
             while ((str = reader.readLine()) != null) {
-                String[] parts = str.split(" ");
-                for (int i = 0; i < parts.length; i++) {
-                    if (parts[i].contains("id=")) {
-                        String id = parts[i].substring(parts[i].indexOf("=") + 1, parts[i].length() - 1);
-                        int number = Integer.parseInt(id);
-                        if (number >= count) count = number + 1;
-                    }
-                }
+                Book book = Book.initializeBook(str);
+                bookList.add(book);
             }
-
         } catch (IOException e) {
-            throw new DAOException("Please check the file name");
+            throw new DAOException("File with books does not exist");
         }
-        return count;
+        return bookList;
+    }
+
+    private void updateBooksFile(List<Book> bookList) throws DAOException {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
+            for (Book book : bookList) {
+                bw.write(book.toString());
+                bw.write("\n");
+            }
+        } catch (IOException e) {
+            throw new DAOException("Please check the file path");
+        }
+    }
+
+    private int generateID() {
+        int id = 1;
+        for (Book book : bookList) {
+            if (book.getId() >= id)
+                id = book.getId() + 1;
+        }
+        return id;
     }
 
 }

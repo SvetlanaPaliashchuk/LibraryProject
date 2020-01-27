@@ -11,6 +11,7 @@ public enum CommandName {
     DELETE_BOOK,
     GET_ALL_BOOKS,
     GET_BOOK_BY_TITLE,
-    WRONG_REQUEST;
+    GET_BOOKS_BY_AUTHOR,
+    WRONG_REQUEST
 
 }

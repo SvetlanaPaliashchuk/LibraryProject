@@ -6,7 +6,6 @@ import by.javatr.dao.factory.DAOFactory;
 import by.javatr.entity.Book;
 import by.javatr.service.BookService;
 import by.javatr.service.exception.ServiceException;
-
 import java.util.List;
 import java.util.Map;
 
@@ -25,8 +24,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<String> getBooksList() throws ServiceException {
-        List<String> list = null;
+    public List<Book> getBooksList() throws ServiceException {
+        List<Book> list;
         try {
             list = bookDAO.getAllBooks();
             if (list == null) throw new ServiceException("No books in the library");
@@ -44,10 +43,15 @@ public class BookServiceImpl implements BookService {
             throw new ServiceException("There is no such book");
         }
     }
-
     @Override
     public List<Book> getBooksListByAuthor(String author) throws ServiceException {
-        return null;
+     //   try{
+            return bookDAO.getBooksByAuthor(author);
+
+ //       }
+//        catch (DAOException e) {
+//            throw new ServiceException("Could not add the book");
+//        }
     }
 
     @Override
@@ -57,11 +61,6 @@ public class BookServiceImpl implements BookService {
         } catch (DAOException e) {
             throw new ServiceException("Could not add the book");
         }
-    }
-
-    @Override
-    public boolean editBook(Map<String, Object> requestParameters, String language) throws ServiceException {
-        return false;
     }
 
     @Override

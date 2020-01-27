@@ -11,7 +11,7 @@ public class DeleteAllUsers implements Command {
         String response;
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         ClientService clientService = serviceFactory.getUserService();
-        boolean isDeleted = false;
+        boolean isDeleted;
 
         try{
             isDeleted = clientService.deleteAllUsers();

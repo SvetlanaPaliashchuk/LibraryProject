@@ -17,14 +17,14 @@ public class AddBook implements Command {
 
         Book book = new Book(title, author, pages);
 
-        String response = null;
+        String response;
 
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         BookService bookService = serviceFactory.getBookService();
 
         try {
             boolean isAdded = bookService.addBook(book);
-            if (isAdded) response = "Book was added to the library";
+            if (isAdded) response = "Book has been added to the library";
             else response = "Error during adding book procedure";
         } catch (ServiceException e) {
             response = "Error during adding book procedure";

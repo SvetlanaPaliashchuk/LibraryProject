@@ -3,10 +3,7 @@ package by.javatr.controller;
 import by.javatr.controller.command.Command;
 import by.javatr.controller.command.CommandName;
 import by.javatr.controller.command.impl.*;
-import by.javatr.controller.command.impl.book.AddBook;
-import by.javatr.controller.command.impl.book.DeleteBook;
-import by.javatr.controller.command.impl.book.GetAllBooks;
-import by.javatr.controller.command.impl.book.GetBookByTitle;
+import by.javatr.controller.command.impl.book.*;
 import by.javatr.controller.command.impl.user.*;
 
 import java.util.HashMap;
@@ -27,11 +24,12 @@ final class CommandProvider {
         repository.put(CommandName.DELETE_BOOK, new DeleteBook());
         repository.put(CommandName.GET_ALL_BOOKS, new GetAllBooks());
         repository.put(CommandName.GET_BOOK_BY_TITLE, new GetBookByTitle());
+        repository.put(CommandName.GET_BOOKS_BY_AUTHOR, new GetBooksByAuthor());
     }
 
     Command getCommand(String name){
-        CommandName commandName = null;
-        Command command = null;
+        CommandName commandName;
+        Command command;
 
 
         try{

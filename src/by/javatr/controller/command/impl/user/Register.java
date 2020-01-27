@@ -16,8 +16,8 @@ public class Register implements Command {
         String surname = words[2];
         String login = words[3];
         String password = words[4];
-        Role role = null;
-        User user =  null;
+        Role role;
+        User user;
 
         text = text.toUpperCase();
         if (text.contains("ADMIN")) {
@@ -27,7 +27,7 @@ public class Register implements Command {
 
         user = new User(name, surname, login, password, role);
 
-        String response = null;
+        String response;
 
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         ClientService clientService = serviceFactory.getUserService();

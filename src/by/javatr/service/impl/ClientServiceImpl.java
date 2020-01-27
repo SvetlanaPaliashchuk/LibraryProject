@@ -3,7 +3,6 @@ package by.javatr.service.impl;
 import by.javatr.dao.IUserDAO;
 import by.javatr.dao.exception.DAOException;
 import by.javatr.dao.factory.DAOFactory;
-import by.javatr.entity.Role;
 import by.javatr.entity.User;
 import by.javatr.service.ClientService;
 import by.javatr.service.exception.ServiceException;
@@ -42,11 +41,6 @@ public class ClientServiceImpl implements ClientService {
         } catch (DAOException e) {
             throw new ServiceException("Registration fail");
         }
-    }
-
-    @Override
-    public boolean editUser(User user) throws ServiceException {
-        return false;
     }
 
     @Override

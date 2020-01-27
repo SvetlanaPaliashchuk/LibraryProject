@@ -12,7 +12,7 @@ public class GetUserByLogin implements Command {
         String[] words = text.split(" ");
         //if (words.length<3) throw new Exception(" ");
         String login = words[1];
-        String response = null;
+        String response;
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         ClientService clientService = serviceFactory.getUserService();
 

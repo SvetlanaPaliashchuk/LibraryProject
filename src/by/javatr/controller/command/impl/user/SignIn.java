@@ -13,7 +13,7 @@ public class SignIn implements Command {
         // if (words.length<3) throw new Exception(" ");
         String login = words[1];
         String password = words[2];
-        String response = null;
+        String response;
 
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         ClientService clientService = serviceFactory.getUserService();

@@ -28,7 +28,7 @@ public class UserDAOImpl implements IUserDAO {
     }
 
     @Override
-    public boolean signIn(String login, String password) throws DAOException {
+    public boolean signIn(String login, String password) {
         for (User user : userList) {
             if (user.getLogin().equals(login) && user.getPassword().equals(password))
                 return true;
@@ -46,7 +46,6 @@ public class UserDAOImpl implements IUserDAO {
         userList.add(user);
         updateUsersFile(userList);
     }
-
 
     @Override
     public boolean deleteAllUsers() throws DAOException {
@@ -72,7 +71,7 @@ public class UserDAOImpl implements IUserDAO {
     }
 
     @Override
-    public List<User> getAllUsers() throws DAOException {
+    public List<User> getAllUsers(){
         return userList;
     }
 
@@ -81,13 +80,16 @@ public class UserDAOImpl implements IUserDAO {
         String s = "";
         for (User user: userList) {
             if (user.getLogin().equals(userLogin)){
-                s =  user.toString();
+                s = user.toString();
             }
             else throw new DAOException("There is no such User");
         }
         return s;
     }
 
+
+
+    //вспомогательные методы
     private int generateID() {
         int id = 1;
         for (User user : userList) {
@@ -95,7 +97,6 @@ public class UserDAOImpl implements IUserDAO {
                 id = user.getId() + 1;
         }
         return id;
-
     }
 
     private void updateUsersFile(List<User> userList) throws DAOException {

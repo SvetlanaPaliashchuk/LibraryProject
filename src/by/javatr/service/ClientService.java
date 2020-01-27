@@ -11,8 +11,6 @@ public interface ClientService {
 
     void registerUser(User user) throws ServiceException;
 
-    boolean editUser(User user) throws ServiceException;
-
     List<User> getAllUsers() throws ServiceException;
 
     String getUserByLogin(String userLogin)throws ServiceException;

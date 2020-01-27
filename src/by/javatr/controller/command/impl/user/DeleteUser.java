@@ -10,7 +10,7 @@ public class DeleteUser implements Command {
     public String execute(String request) {
         String text = request.trim();
         String[] words = text.split(" ");
-        String response = null;
+        String response;
         String login = words[1];
 
         ServiceFactory serviceFactory = ServiceFactory.getInstance();

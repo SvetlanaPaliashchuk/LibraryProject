@@ -48,6 +48,36 @@ public class Book {
         this.pages = pages;
     }
 
+
+    public static Book initializeBook(String str) {
+        Book book = new Book();
+        if (str != null) {
+            String[] parts = str.split(" ");
+            for (String part : parts) {
+                if (part != null) {
+                    if (part.contains("id=")) {
+                        String id = part.substring(part.indexOf("=") + 1, part.length() - 1);
+                        book.setId(Integer.parseInt(id));
+                    }
+                    if (part.contains("title=")) {
+                        String title = part.substring(part.indexOf("=") + 1, part.length() - 1);
+                        book.setTitle(title);
+                    }
+                    if (part.contains("author=")) {
+                        String author = part.substring(part.indexOf("=") + 1, part.length() - 1);
+                        book.setAuthor(author);
+                    }
+                    if (part.contains("pages=")) {
+                        String pages = part.substring(part.indexOf("=") + 1, part.length() - 1);
+                        book.setPages(Integer.parseInt(pages));
+                    }
+
+                }
+            }
+        }
+        return book;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
