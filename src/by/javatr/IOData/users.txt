@@ -1,0 +1,4 @@
+User [id=1, name=Svetlana, surname=Yuntsevich, login=Lanaq123, password=password2, role=READER]
+User [id=3, name=Svetlana, surname=Yuntsevich, login=Lana23, password=password2, role=READER]
+User [id=4, name=Svetlana, surname=Yuntsevich, login=Lana3, password=password2, role=READER]
+User [id=5, name=Svetlana, surname=Yuntsevich, login=Lana, password=12345, role=READER]
