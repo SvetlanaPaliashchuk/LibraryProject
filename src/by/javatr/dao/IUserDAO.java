@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IUserDAO {
 
-    void signIn(String login, String password)throws DAOException;
+    boolean signIn(String login, String password)throws DAOException;
 
     void register(User user)throws DAOException;
 
@@ -15,7 +15,7 @@ public interface IUserDAO {
 
     boolean deleteUser(String login)throws DAOException;
 
-    List<String> getAllUsers() throws DAOException;
+    List<User> getAllUsers() throws DAOException;
 
     String getUserByLogin(String userLogin)throws DAOException;
 

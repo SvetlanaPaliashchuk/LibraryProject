@@ -19,6 +19,6 @@ public class Runner {
 
         Controller c = new Controller();
 
-        System.out.println(c.executeTask("add_book title author 258"));
+        System.out.println(c.executeTask("get_user_by_login Lana"));
     }
 }

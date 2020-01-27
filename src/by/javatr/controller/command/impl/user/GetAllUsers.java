@@ -20,7 +20,13 @@ public class GetAllUsers implements Command {
             List<User> list = clientService.getAllUsers();
             response.append("List of users:\n");
             for (User user : list) {
-                response.append(user);
+                String s = user.toString();
+                String s2 = "";
+                if (s.contains("password=")){
+                    s2 = s.replaceFirst(" password=.+?,", "");
+                }
+
+                response.append(s2);
                 response.append("\n");
             }
         }catch(ServiceException e){

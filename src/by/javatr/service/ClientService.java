@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ClientService {
 
-    void signIn(String login, String password) throws ServiceException;
+    boolean signIn(String login, String password) throws ServiceException;
 
     void registerUser(User user) throws ServiceException;
 

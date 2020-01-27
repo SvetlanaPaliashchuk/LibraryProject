@@ -26,12 +26,13 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void signIn(String login, String password) throws ServiceException {
+    public boolean signIn(String login, String password) throws ServiceException {
         try {
-            userDAO.signIn(login, password);
+            if (userDAO.signIn(login, password)) return true;
         } catch (DAOException e) {
             throw new ServiceException("Please check login or password");
         }
+        return false;
     }
 
     @Override
@@ -50,49 +51,13 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public List<User> getAllUsers() throws ServiceException {
-        List<String> list = null;
-        try {
-            list = userDAO.getAllUsers();
-        } catch (DAOException e) {
-            throw new ServiceException("Could not get the list of users");
-        }
         List<User> userList = new ArrayList<>();
-        for (String s : list) {
-            User user = new User();
-            String[] parts = s.split(" ");
-            for (int i = 0; i < parts.length; i++) {
-                if (parts[i] != null) {
-                    if (parts[i].contains("id=")) {
-                        String id = parts[i].substring(parts[i].indexOf("=") + 1, parts[i].length() - 1);
-                        user.setId(Integer.parseInt(id));
-                    }
-                    if (parts[i].contains("name=")) {
-                        String name = parts[i].substring(parts[i].indexOf("=") + 1, parts[i].length() - 1);
-                        user.setName(name);
-                    }
-                    if (parts[i].contains("surname=")) {
-                        String surname = parts[i].substring(parts[i].indexOf("=") + 1, parts[i].length() - 1);
-                        user.setSurname(surname);
-                    }
-                    if (parts[i].contains("login=")) {
-                        String login = parts[i].substring(parts[i].indexOf("=") + 1, parts[i].length() - 1);
-                        user.setLogin(login);
-                    }
-                    if (parts[i].contains("password=")) {
-                        String password = parts[i].substring(parts[i].indexOf("=") + 1, parts[i].length() - 1);
-                        user.setPassword(password);
-                    }
-                    if (parts[i].contains("role=")) {
-                        String role = parts[i].substring(parts[i].indexOf("=") + 1, parts[i].length() - 1);
-                        System.out.println(role);
-                        if (role.equals(Role.READER.toString()))
-                            user.setRole(Role.READER);
-                        else user.setRole(Role.ADMIN);
-                    }
-                }
-            }
-            userList.add(user);
+        try {
+            userList = userDAO.getAllUsers();
+        } catch (DAOException e) {
+            System.out.println("Cannot display users");
         }
+
         return userList;
     }
 

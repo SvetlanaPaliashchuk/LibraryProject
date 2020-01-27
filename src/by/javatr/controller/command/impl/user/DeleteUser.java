@@ -17,8 +17,9 @@ public class DeleteUser implements Command {
         ClientService clientService = serviceFactory.getUserService();
 
         try{
-            clientService.deleteUser(login);
+            if (clientService.deleteUser(login))
             response= "The user "+ login + " has been deleted";
+            else response = "The user "+ login + " has not been deleted";
         }
         catch(ServiceException e){
             response = "Error during delete procedure";

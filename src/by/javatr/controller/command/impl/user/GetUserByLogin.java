@@ -17,7 +17,11 @@ public class GetUserByLogin implements Command {
         ClientService clientService = serviceFactory.getUserService();
 
         try {
-            response = "User info:\n" + clientService.getUserByLogin(login);
+            String s = clientService.getUserByLogin(login);
+            if (s.contains("password=")){
+                s = s.replaceFirst(" password=.+?,", "");
+            }
+            response = "User info:\n" + s;
         } catch (ServiceException e) {
             response = "No user info";
         }

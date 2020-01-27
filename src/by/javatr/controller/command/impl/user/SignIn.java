@@ -10,7 +10,7 @@ public class SignIn implements Command {
     public String execute(String request) {
         String text = request.trim();
         String[] words = text.split(" ");
-        //if (words.length<3) throw new Exception(" ");
+        // if (words.length<3) throw new Exception(" ");
         String login = words[1];
         String password = words[2];
         String response = null;
@@ -18,11 +18,11 @@ public class SignIn implements Command {
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         ClientService clientService = serviceFactory.getUserService();
 
-        try{
-            clientService.signIn(login, password);
-            response= "Welcome";
-        }
-        catch(ServiceException e){
+        try {
+            if (clientService.signIn(login, password))
+                response = "Welcome, " + login;
+            else response = "Please check login or password";
+        } catch (ServiceException e) {
             response = "Error during login procedure";
         }
         return response;

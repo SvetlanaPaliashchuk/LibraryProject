@@ -1,4 +1,4 @@
-User [id=1, name=Svetlana, surname=Yuntsevich, login=Lanaq123, password=password2, role=READER]
-User [id=3, name=Svetlana, surname=Yuntsevich, login=Lana23, password=password2, role=READER]
-User [id=4, name=Svetlana, surname=Yuntsevich, login=Lana3, password=password2, role=READER]
-User [id=5, name=Svetlana, surname=Yuntsevich, login=Lana, password=12345, role=READER]
+User [id=2, firstName=Sveta, surname=Yu, login=Lana1232, password=12345, role=ADMIN]
+User [id=3, firstName=sks, surname=ksk, login=lal, password=la, role=ADMIN]
+User [id=4, firstName=sks, surname=ksk, login=login, password=la, role=ADMIN]
+User [id=5, firstName=sks, surname=ksk, login=login8, password=la, role=ADMIN]
