@@ -48,41 +48,14 @@ public class Book {
         this.pages = pages;
     }
 
-
-    public static Book initializeBook(String str) {
-        Book book = new Book();
-        if (str != null) {
-            String[] parts = str.split(" ");
-            for (String part : parts) {
-                if (part != null) {
-                    if (part.contains("id=")) {
-                        String id = part.substring(part.indexOf("=") + 1, part.length() - 1);
-                        book.setId(Integer.parseInt(id));
-                    }
-                    if (part.contains("title=")) {
-                        String title = part.substring(part.indexOf("=") + 1, part.length() - 1);
-                        book.setTitle(title);
-                    }
-                    if (part.contains("author=")) {
-                        String author = part.substring(part.indexOf("=") + 1, part.length() - 1);
-                        book.setAuthor(author);
-                    }
-                    if (part.contains("pages=")) {
-                        String pages = part.substring(part.indexOf("=") + 1, part.length() - 1);
-                        book.setPages(Integer.parseInt(pages));
-                    }
-
-                }
-            }
-        }
-        return book;
-    }
-
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + id;
+        result = prime * result + ((title == null) ? 0 : title.hashCode());
+        result = prime * result + ((author == null) ? 0 : author.hashCode());
+        result = prime * result + pages;
         return result;
     }
 
@@ -95,9 +68,9 @@ public class Book {
         if (getClass() != obj.getClass())
             return false;
         Book other = (Book) obj;
-        if (id != other.id)
-            return false;
-        return true;
+        return (id == other.getId()) && ((title != null && title.equals(other.getTitle())))
+                && ((author != null && author.equals(other.getAuthor())))
+                && (pages == other.getPages());
     }
 
     @Override

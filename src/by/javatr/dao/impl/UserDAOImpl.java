@@ -2,6 +2,7 @@ package by.javatr.dao.impl;
 
 import by.javatr.dao.IUserDAO;
 import by.javatr.dao.exception.DAOException;
+import by.javatr.entity.Role;
 import by.javatr.entity.User;
 
 import java.io.*;
@@ -87,8 +88,6 @@ public class UserDAOImpl implements IUserDAO {
         return s;
     }
 
-
-
     //вспомогательные методы
     private int generateID() {
         int id = 1;
@@ -115,7 +114,7 @@ public class UserDAOImpl implements IUserDAO {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String str;
             while ((str = reader.readLine()) != null) {
-                User user = User.initializeUser(str);
+                User user = initializeUser(str);
                 userList.add(user);
             }
         } catch (IOException e) {
@@ -123,5 +122,45 @@ public class UserDAOImpl implements IUserDAO {
         }
         return userList;
 
+    }
+
+    private User initializeUser(String str) {
+        User user = new User();
+        if (str != null) {
+            String[] parts = str.split(" ");
+            if (parts.length == 6) {
+                for (String part : parts) {
+                    if (part != null) {
+                        if (part.contains("id=")) {
+                            String id = part.substring(part.indexOf("=") + 1, part.length() - 1);
+                            user.setId(Integer.parseInt(id));
+                        }
+                        if (part.contains("firstName=")) {
+                            String name = part.substring(part.indexOf("=") + 1, part.length() - 1);
+                            user.setFirstName(name);
+                        }
+                        if (part.contains("surname=")) {
+                            String surname = part.substring(part.indexOf("=") + 1, part.length() - 1);
+                            user.setSurname(surname);
+                        }
+                        if (part.contains("login=")) {
+                            String login = part.substring(part.indexOf("=") + 1, part.length() - 1);
+                            user.setLogin(login);
+                        }
+                        if (part.contains("password=")) {
+                            String password = part.substring(part.indexOf("=") + 1, part.length() - 1);
+                            user.setPassword(password);
+                        }
+                        if (part.contains("role=")) {
+                            String role = part.substring(part.indexOf("=") + 1, part.length() - 1);
+                            if (role.equals(Role.READER.toString()))
+                                user.setRole(Role.READER);
+                            else user.setRole(Role.ADMIN);
+                        }
+                    }
+                }
+            }
+        }
+        return user;
     }
 }

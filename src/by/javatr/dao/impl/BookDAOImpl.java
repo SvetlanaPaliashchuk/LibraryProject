@@ -92,13 +92,44 @@ public class BookDAOImpl implements IBookDAO {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String str;
             while ((str = reader.readLine()) != null) {
-                Book book = Book.initializeBook(str);
+                Book book = initializeBook(str);
                 bookList.add(book);
             }
         } catch (IOException e) {
             throw new DAOException("File with books does not exist");
         }
         return bookList;
+    }
+
+    private Book initializeBook(String str) {
+        Book book = new Book();
+        if (str != null) {
+            String[] parts = str.split(" ");
+            if (parts.length == 4) {
+                for (String part : parts) {
+                    if (part != null) {
+                        if (part.contains("id=")) {
+                            String id = part.substring(part.indexOf("=") + 1, part.length() - 1);
+                            book.setId(Integer.parseInt(id));
+                        }
+                        if (part.contains("title=")) {
+                            String title = part.substring(part.indexOf("=") + 1, part.length() - 1);
+                            book.setTitle(title);
+                        }
+                        if (part.contains("author=")) {
+                            String author = part.substring(part.indexOf("=") + 1, part.length() - 1);
+                            book.setAuthor(author);
+                        }
+                        if (part.contains("pages=")) {
+                            String pages = part.substring(part.indexOf("=") + 1, part.length() - 1);
+                            book.setPages(Integer.parseInt(pages));
+                        }
+
+                    }
+                }
+            }
+        }
+        return book;
     }
 
     private void updateBooksFile(List<Book> bookList) throws DAOException {
