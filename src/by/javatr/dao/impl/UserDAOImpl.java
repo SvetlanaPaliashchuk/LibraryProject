@@ -79,12 +79,13 @@ public class UserDAOImpl implements IUserDAO {
     @Override
     public String getUserByLogin(String userLogin) throws DAOException {
         String s = "";
+        userList = readAllUsers();
         for (User user: userList) {
             if (user.getLogin().equals(userLogin)){
-                s = user.toString();
+                return user.toString();
             }
-            else throw new DAOException("There is no such User");
         }
+        if (s.isEmpty()) throw new DAOException("There is no such User");
         return s;
     }
 
@@ -128,7 +129,7 @@ public class UserDAOImpl implements IUserDAO {
         User user = new User();
         if (str != null) {
             String[] parts = str.split(" ");
-            if (parts.length == 6) {
+           // if (parts.length == 6) {
                 for (String part : parts) {
                     if (part != null) {
                         if (part.contains("id=")) {
@@ -160,7 +161,7 @@ public class UserDAOImpl implements IUserDAO {
                     }
                 }
             }
-        }
+     //   }
         return user;
     }
 }

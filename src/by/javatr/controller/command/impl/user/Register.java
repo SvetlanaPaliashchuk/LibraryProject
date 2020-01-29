@@ -9,7 +9,7 @@ import by.javatr.service.factory.ServiceFactory;
 
 public class Register implements Command {
     @Override
-    public String execute(String request) {
+    public String execute(String request) throws ServiceException {
         String text = request.trim();
         String[] words = text.split(" ");
         String name = words[1];
@@ -35,8 +35,10 @@ public class Register implements Command {
         try {
             clientService.registerUser(user);
             response = "You are registered";
+
         } catch (ServiceException e) {
-            response = "Error during registration procedure";
+            throw new ServiceException();
+
         }
         return response;
     }

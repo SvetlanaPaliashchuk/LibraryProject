@@ -105,7 +105,7 @@ public class BookDAOImpl implements IBookDAO {
         Book book = new Book();
         if (str != null) {
             String[] parts = str.split(" ");
-            if (parts.length == 4) {
+           // if (parts.length == 4) {
                 for (String part : parts) {
                     if (part != null) {
                         if (part.contains("id=")) {
@@ -128,7 +128,7 @@ public class BookDAOImpl implements IBookDAO {
                     }
                 }
             }
-        }
+    //    }
         return book;
     }
 
