@@ -7,7 +7,6 @@ import by.javatr.entity.Book;
 import by.javatr.service.BookService;
 import by.javatr.service.exception.ServiceException;
 import java.util.List;
-import java.util.Map;
 
 public class BookServiceImpl implements BookService {
 
@@ -37,6 +36,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public String getBookByName(String bookName) throws ServiceException {
+        if (bookName == null) throw new ServiceException("The book title cannot be null");
         try {
             return bookDAO.getBookByTitle(bookName);
         } catch (DAOException e) {
@@ -45,17 +45,19 @@ public class BookServiceImpl implements BookService {
     }
     @Override
     public List<Book> getBooksListByAuthor(String author) throws ServiceException {
-     //   try{
+        if (author == null) throw new ServiceException("The book author cannot be null");
+        try{
             return bookDAO.getBooksByAuthor(author);
 
- //       }
-//        catch (DAOException e) {
-//            throw new ServiceException("Could not add the book");
-//        }
+        }
+        catch (DAOException e) {
+            throw new ServiceException("Could not add the book");
+        }
     }
 
     @Override
     public boolean addBook(Book book) throws ServiceException {
+        if (book == null) throw new ServiceException("Please create the book!");
         try{
             return bookDAO.addBook(book);
         } catch (DAOException e) {
@@ -65,6 +67,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public boolean deleteBook(String id) throws ServiceException {
+        if (id == null) throw new ServiceException("The book id cannot be null");
         try {
             return bookDAO.deleteBook(id);
         } catch (DAOException e) {

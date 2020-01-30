@@ -8,7 +8,7 @@ import by.javatr.service.factory.ServiceFactory;
 
 public class AddBook implements Command {
     @Override
-    public String execute(String request) {
+    public String execute(String request) throws ServiceException {
         String text = request.trim();
         String[] params = text.split(" ");
         String title = params[1];
@@ -27,7 +27,7 @@ public class AddBook implements Command {
             if (isAdded) response = "Book has been added to the library";
             else response = "Error during adding book procedure";
         } catch (ServiceException e) {
-            response = "Error during adding book procedure";
+            throw new ServiceException();
         }
         return response;
     }

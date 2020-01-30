@@ -21,7 +21,7 @@ public class BookDAOImpl implements IBookDAO {
         try {
             bookList = readAllBooks();
         } catch (DAOException e) {
-            e.printStackTrace();
+            bookList = null;
         }
     }
 
@@ -31,7 +31,6 @@ public class BookDAOImpl implements IBookDAO {
 
     @Override
     public boolean addBook(Book book) throws DAOException {
-        if (book == null) throw new DAOException("Please create the book!");
         for (Book b : bookList) {
             if (book.getTitle().equals(b.getTitle()) && book.getAuthor().equals(b.getAuthor()))
                 throw new DAOException("This book is already in library");
@@ -44,7 +43,6 @@ public class BookDAOImpl implements IBookDAO {
 
     @Override
     public boolean deleteBook(String id) throws DAOException {
-        if (id == null) throw new DAOException("The book id cannot be null");
         Book book;
         Iterator<Book> it = bookList.iterator();
         while (it.hasNext()) {
@@ -65,7 +63,7 @@ public class BookDAOImpl implements IBookDAO {
     }
 
     @Override
-    public String getBookByTitle(String title) {
+    public String getBookByTitle(String title){
         String str = "";
         for (Book book : bookList) {
             if (book.getTitle().equals(title)) {
@@ -76,7 +74,7 @@ public class BookDAOImpl implements IBookDAO {
     }
 
     @Override
-    public List<Book> getBooksByAuthor(String author) {
+    public List<Book> getBooksByAuthor(String author){
         List<Book> booksOfAuthor = new ArrayList<>();
         for (Book book : bookList) {
             if (book.getAuthor().equals(author))
@@ -105,30 +103,30 @@ public class BookDAOImpl implements IBookDAO {
         Book book = new Book();
         if (str != null) {
             String[] parts = str.split(" ");
-           // if (parts.length == 4) {
-                for (String part : parts) {
-                    if (part != null) {
-                        if (part.contains("id=")) {
-                            String id = part.substring(part.indexOf("=") + 1, part.length() - 1);
-                            book.setId(Integer.parseInt(id));
-                        }
-                        if (part.contains("title=")) {
-                            String title = part.substring(part.indexOf("=") + 1, part.length() - 1);
-                            book.setTitle(title);
-                        }
-                        if (part.contains("author=")) {
-                            String author = part.substring(part.indexOf("=") + 1, part.length() - 1);
-                            book.setAuthor(author);
-                        }
-                        if (part.contains("pages=")) {
-                            String pages = part.substring(part.indexOf("=") + 1, part.length() - 1);
-                            book.setPages(Integer.parseInt(pages));
-                        }
-
+            // if (parts.length == 4) {
+            for (String part : parts) {
+                if (part != null) {
+                    if (part.contains("id=")) {
+                        String id = part.substring(part.indexOf("=") + 1, part.length() - 1);
+                        book.setId(Integer.parseInt(id));
                     }
+                    if (part.contains("title=")) {
+                        String title = part.substring(part.indexOf("=") + 1, part.length() - 1);
+                        book.setTitle(title);
+                    }
+                    if (part.contains("author=")) {
+                        String author = part.substring(part.indexOf("=") + 1, part.length() - 1);
+                        book.setAuthor(author);
+                    }
+                    if (part.contains("pages=")) {
+                        String pages = part.substring(part.indexOf("=") + 1, part.length() - 1);
+                        book.setPages(Integer.parseInt(pages));
+                    }
+
                 }
             }
-    //    }
+        }
+        //    }
         return book;
     }
 

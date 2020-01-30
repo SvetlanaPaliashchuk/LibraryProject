@@ -1,4 +1,4 @@
-package by.javatr;
+package by.javatr.view;
 
 import by.javatr.controller.Controller;
 import by.javatr.scanner.DataScanner;

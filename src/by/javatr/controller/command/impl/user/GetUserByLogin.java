@@ -7,7 +7,7 @@ import by.javatr.service.factory.ServiceFactory;
 
 public class GetUserByLogin implements Command {
     @Override
-    public String execute(String request) {
+    public String execute(String request) throws ServiceException {
         String text = request.trim();
         String[] words = text.split(" ");
         //if (words.length<3) throw new Exception(" ");
@@ -23,7 +23,8 @@ public class GetUserByLogin implements Command {
             }
             response = "User info:\n" + s;
         } catch (ServiceException e) {
-            response = "No user info";
+            throw new ServiceException();
+
         }
         return response;
     }

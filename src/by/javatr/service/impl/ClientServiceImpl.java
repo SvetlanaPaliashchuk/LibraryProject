@@ -26,6 +26,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public boolean signIn(String login, String password) throws ServiceException {
+        if (login == null || password == null) throw new ServiceException("Please check login or password");
         try {
             if (userDAO.signIn(login, password)) return true;
         } catch (DAOException e) {
@@ -36,6 +37,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void registerUser(User user) throws ServiceException {
+        if (user == null) throw new ServiceException("Please create the user!");
         try {
             userDAO.register(user);
         } catch (DAOException e) {
@@ -58,6 +60,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public String getUserByLogin(String userLogin) throws ServiceException {
+        if (userLogin == null) throw new ServiceException("The user login cannot be null");
         try {
             return userDAO.getUserByLogin(userLogin);
         } catch (DAOException e) {
@@ -68,7 +71,8 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public boolean deleteUser(String login) throws ServiceException {
-        boolean isDeleted = false;
+        if (login == null) throw new ServiceException("The user to delete cannot be null");
+        boolean isDeleted;
         try {
             isDeleted = userDAO.deleteUser(login);
         } catch (DAOException e) {

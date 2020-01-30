@@ -17,8 +17,6 @@ public final class Controller {
         else commandName = request;
         executionCommand = provider.getCommand(commandName);
 
-        String response = executionCommand.execute(request);
-
-        return response;
+        return executionCommand.execute(request);
     }
 }

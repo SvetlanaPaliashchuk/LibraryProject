@@ -10,7 +10,7 @@ import java.util.List;
 
 public class GetBooksByAuthor implements Command {
     @Override
-    public String execute(String request) {
+    public String execute(String request) throws ServiceException {
         List<Book> list;
         String text = request.trim();
         String[] words = text.split(" ");
@@ -29,7 +29,7 @@ public class GetBooksByAuthor implements Command {
                 response.append("\n");
             }
         } catch (ServiceException e) {
-            response.append("There are no books of the author");
+            throw new ServiceException();
         }
         return response.toString();
     }

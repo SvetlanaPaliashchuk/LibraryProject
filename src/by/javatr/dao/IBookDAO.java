@@ -14,5 +14,5 @@ public interface IBookDAO {
 
     String getBookByTitle(String title) throws DAOException;
 
-    List<Book> getBooksByAuthor(String author);
+    List<Book> getBooksByAuthor(String author) throws DAOException;
 }

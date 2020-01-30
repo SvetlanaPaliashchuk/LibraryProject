@@ -3,6 +3,8 @@ package by.javatr.entity;
 import java.io.Serializable;
 
 public class User implements Serializable {
+    private static final long serialVersionUID = -4899639796230566611L;
+
     private int id;
     private String firstName;
     private String surname;
@@ -78,7 +80,7 @@ public class User implements Serializable {
         result = prime * result + ((surname == null) ? 0 : surname.hashCode());
         result = prime * result + ((login == null) ? 0 : login.hashCode());
         result = prime * result + ((password == null) ? 0 : password.hashCode());
-        result = prime * result + ((role == null) ? 0 : role.hashCode());
+        result = prime * result + ((role == null) ? 0 : 1);
         return result;
     }
 

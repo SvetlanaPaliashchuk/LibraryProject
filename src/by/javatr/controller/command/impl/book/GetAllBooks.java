@@ -10,7 +10,7 @@ import java.util.List;
 
 public class GetAllBooks implements Command {
     @Override
-    public String execute(String request) {
+    public String execute(String request) throws ServiceException {
         List<Book> list;
         StringBuilder response  = new StringBuilder();
 
@@ -25,7 +25,7 @@ public class GetAllBooks implements Command {
                 response.append("\n");
             }
         }catch(ServiceException e){
-            response.append("Could not show all books");
+            throw new ServiceException();
         }
         return response.toString();
     }

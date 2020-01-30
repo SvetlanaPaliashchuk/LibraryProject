@@ -11,7 +11,7 @@ import java.util.List;
 public class GetAllUsers implements Command {
 
     @Override
-    public String execute(String request) {
+    public String execute(String request) throws ServiceException {
         StringBuilder response  = new StringBuilder();
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         ClientService clientService = serviceFactory.getUserService();
@@ -30,7 +30,7 @@ public class GetAllUsers implements Command {
                 response.append("\n");
             }
         }catch(ServiceException e){
-            response.append("Could not show all users");
+            throw new ServiceException();
         }
         return response.toString();
     }

@@ -1,6 +1,11 @@
 package by.javatr.entity;
 
-public class Book {
+import java.io.Serializable;
+
+public class Book implements Serializable {
+    private static final long serialVersionUID = -300386522713785194L;
+
+
     private int id;
     private String title;
     private String author;

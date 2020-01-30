@@ -7,7 +7,7 @@ import by.javatr.service.factory.ServiceFactory;
 
 public class DeleteBook implements Command {
     @Override
-    public String execute(String request) {
+    public String execute(String request) throws ServiceException {
         String text = request.trim();
         String[] params = text.split(" ");
         String response;
@@ -22,7 +22,7 @@ public class DeleteBook implements Command {
             else response = "There is no such book";
         }
         catch(ServiceException e){
-            response = "Error during delete procedure";
+            throw new ServiceException();
         }
         return response;
     }

@@ -7,7 +7,7 @@ import by.javatr.service.factory.ServiceFactory;
 
 public class DeleteAllUsers implements Command {
     @Override
-    public String execute(String request) {
+    public String execute(String request) throws ServiceException {
         String response;
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         ClientService clientService = serviceFactory.getUserService();
@@ -20,7 +20,7 @@ public class DeleteAllUsers implements Command {
         }
 
         catch(ServiceException e){
-            response = "Could not delete all users";
+            throw new ServiceException();
         }
         return response;
     }

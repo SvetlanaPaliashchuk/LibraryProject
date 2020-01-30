@@ -7,7 +7,7 @@ import by.javatr.service.factory.ServiceFactory;
 
 public class GetBookByTitle implements Command {
     @Override
-    public String execute(String request) {
+    public String execute(String request) throws ServiceException {
         String text = request.trim();
         String[] words = text.split(" ");
         String title = words[1];
@@ -18,7 +18,7 @@ public class GetBookByTitle implements Command {
         try {
             response = "Book info:\n" + bookService.getBookByName(title);
         } catch (ServiceException e) {
-            response = "No book info";
+            throw new ServiceException();
         }
         return response;
     }
