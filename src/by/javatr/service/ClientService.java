@@ -1,7 +1,7 @@
 package by.javatr.service;
 
 import by.javatr.entity.User;
-import by.javatr.service.exception.ServiceException;
+import by.javatr.exception.ServiceException;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public interface ClientService {
 
     String getUserByLogin(String userLogin)throws ServiceException;
 
-    boolean deleteUser(String login)throws ServiceException;
+    boolean deleteUserByLogin(String login)throws ServiceException;
 
     boolean deleteAllUsers()throws ServiceException;
 

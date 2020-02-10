@@ -18,10 +18,10 @@ final class CommandProvider {
         repository.put(CommandName.ADD_BOOK, new AddBook());
         repository.put(CommandName.WRONG_REQUEST, new WrongRequest());
         repository.put(CommandName.DELETE_ALL_USERS, new DeleteAllUsers());
-        repository.put(CommandName.DELETE_USER, new DeleteUser());
+        repository.put(CommandName.DELETE_USER, new DeleteUserByLogin());
         repository.put(CommandName.GET_ALL_USERS, new GetAllUsers());
         repository.put(CommandName.GET_USER_BY_LOGIN, new GetUserByLogin());
-        repository.put(CommandName.DELETE_BOOK, new DeleteBook());
+        repository.put(CommandName.DELETE_BOOK, new DeleteBookByID());
         repository.put(CommandName.GET_ALL_BOOKS, new GetAllBooks());
         repository.put(CommandName.GET_BOOK_BY_TITLE, new GetBookByTitle());
         repository.put(CommandName.GET_BOOKS_BY_AUTHOR, new GetBooksByAuthor());

@@ -1,7 +1,7 @@
 package by.javatr.dao.impl;
 
-import by.javatr.dao.IUserDAO;
-import by.javatr.dao.exception.DAOException;
+import by.javatr.dao.UserDAO;
+import by.javatr.exception.DAOException;
 import by.javatr.entity.Role;
 import by.javatr.entity.User;
 
@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class UserDAOImpl implements IUserDAO {
+public class UserDAOImpl implements UserDAO {
 
-    private static final String fileName = "E:\\LibraryYuntsevich\\src\\by\\javatr\\IOData\\users.txt";
+    private static final String fileName = "E:\\LibraryYuntsevich\\src\\by\\javatr\\txtFiles\\users.txt";
     private static final UserDAOImpl INSTANCE = new UserDAOImpl();
     private List<User> userList;
 
@@ -55,7 +55,7 @@ public class UserDAOImpl implements IUserDAO {
     }
 
     @Override
-    public boolean deleteUser(String login) throws DAOException {
+    public boolean deleteUserByLogin(String login) throws DAOException {
         User user;
         Iterator<User> it = userList.iterator();
         while (it.hasNext()) {

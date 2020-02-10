@@ -1,11 +1,11 @@
 package by.javatr.dao;
 
-import by.javatr.dao.exception.DAOException;
+import by.javatr.exception.DAOException;
 import by.javatr.entity.User;
 
 import java.util.List;
 
-public interface IUserDAO {
+public interface UserDAO {
 
     boolean signIn(String login, String password)throws DAOException;
 
@@ -13,7 +13,7 @@ public interface IUserDAO {
 
     boolean deleteAllUsers()throws DAOException;
 
-    boolean deleteUser(String login)throws DAOException;
+    boolean deleteUserByLogin(String login)throws DAOException;
 
     List<User> getAllUsers() throws DAOException;
 

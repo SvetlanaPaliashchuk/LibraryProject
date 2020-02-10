@@ -2,8 +2,8 @@ package by.javatr.controller.command.impl.book;
 
 import by.javatr.controller.command.Command;
 import by.javatr.service.BookService;
-import by.javatr.service.exception.ServiceException;
-import by.javatr.service.factory.ServiceFactory;
+import by.javatr.exception.ServiceException;
+import by.javatr.factory.ServiceFactory;
 
 public class GetBookByTitle implements Command {
     @Override

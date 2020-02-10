@@ -1,11 +1,11 @@
 package by.javatr.service.impl;
 
-import by.javatr.dao.IUserDAO;
-import by.javatr.dao.exception.DAOException;
-import by.javatr.dao.factory.DAOFactory;
+import by.javatr.dao.UserDAO;
+import by.javatr.exception.DAOException;
+import by.javatr.factory.DAOFactory;
 import by.javatr.entity.User;
 import by.javatr.service.ClientService;
-import by.javatr.service.exception.ServiceException;
+import by.javatr.exception.ServiceException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class ClientServiceImpl implements ClientService {
     private static final ClientServiceImpl INSTANCE = new ClientServiceImpl();
 
     private DAOFactory daoFactory = DAOFactory.getInstance();
-    private IUserDAO userDAO = daoFactory.getUserDAO();
+    private UserDAO userDAO = daoFactory.getUserDAO();
 
     private ClientServiceImpl() {
     }
@@ -70,11 +70,11 @@ public class ClientServiceImpl implements ClientService {
 
 
     @Override
-    public boolean deleteUser(String login) throws ServiceException {
+    public boolean deleteUserByLogin(String login) throws ServiceException {
         if (login == null) throw new ServiceException("The user to delete cannot be null");
         boolean isDeleted;
         try {
-            isDeleted = userDAO.deleteUser(login);
+            isDeleted = userDAO.deleteUserByLogin(login);
         } catch (DAOException e) {
             throw new ServiceException("Could not delete the user");
         }

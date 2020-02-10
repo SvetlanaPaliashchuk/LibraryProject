@@ -4,8 +4,8 @@ import by.javatr.controller.command.Command;
 import by.javatr.entity.Role;
 import by.javatr.entity.User;
 import by.javatr.service.ClientService;
-import by.javatr.service.exception.ServiceException;
-import by.javatr.service.factory.ServiceFactory;
+import by.javatr.exception.ServiceException;
+import by.javatr.factory.ServiceFactory;
 
 public class Register implements Command {
     @Override

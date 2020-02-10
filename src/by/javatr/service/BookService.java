@@ -1,7 +1,7 @@
 package by.javatr.service;
 
 import by.javatr.entity.Book;
-import by.javatr.service.exception.ServiceException;
+import by.javatr.exception.ServiceException;
 import java.util.List;
 
 public interface BookService {
@@ -13,7 +13,7 @@ public interface BookService {
 
 	boolean addBook(Book book) throws ServiceException;
 
-	boolean deleteBook(String id)throws ServiceException;
+	boolean deleteBookByID(String id)throws ServiceException;
 
 
 }

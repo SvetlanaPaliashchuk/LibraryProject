@@ -2,10 +2,10 @@ package by.javatr.controller.command.impl.user;
 
 import by.javatr.controller.command.Command;
 import by.javatr.service.ClientService;
-import by.javatr.service.exception.ServiceException;
-import by.javatr.service.factory.ServiceFactory;
+import by.javatr.exception.ServiceException;
+import by.javatr.factory.ServiceFactory;
 
-public class DeleteUser implements Command {
+public class DeleteUserByLogin implements Command {
     @Override
     public String execute(String request) throws ServiceException {
         String text = request.trim();
@@ -17,7 +17,7 @@ public class DeleteUser implements Command {
         ClientService clientService = serviceFactory.getUserService();
 
         try{
-            if (clientService.deleteUser(login))
+            if (clientService.deleteUserByLogin(login))
             response= "The user "+ login + " has been deleted";
             else response = "The user "+ login + " has not been deleted";
         }

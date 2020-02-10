@@ -1,14 +1,14 @@
 package by.javatr.dao;
 
-import by.javatr.dao.exception.DAOException;
+import by.javatr.exception.DAOException;
 import by.javatr.entity.Book;
 
 import java.util.List;
 
-public interface IBookDAO {
+public interface BookDAO {
     boolean addBook(Book book) throws DAOException;
 
-    boolean deleteBook(String id) throws DAOException;
+    boolean deleteBookByID(String id) throws DAOException;
 
     List<Book> getAllBooks() throws DAOException;
 

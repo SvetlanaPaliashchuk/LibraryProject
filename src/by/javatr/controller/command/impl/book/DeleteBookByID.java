@@ -2,10 +2,10 @@ package by.javatr.controller.command.impl.book;
 
 import by.javatr.controller.command.Command;
 import by.javatr.service.BookService;
-import by.javatr.service.exception.ServiceException;
-import by.javatr.service.factory.ServiceFactory;
+import by.javatr.exception.ServiceException;
+import by.javatr.factory.ServiceFactory;
 
-public class DeleteBook implements Command {
+public class DeleteBookByID implements Command {
     @Override
     public String execute(String request) throws ServiceException {
         String text = request.trim();
@@ -17,7 +17,7 @@ public class DeleteBook implements Command {
         BookService bookService = serviceFactory.getBookService();
         try{
 
-            boolean isDeleted = bookService.deleteBook(id);
+            boolean isDeleted = bookService.deleteBookByID(id);
             if (isDeleted) response= "The book has been deleted";
             else response = "There is no such book";
         }

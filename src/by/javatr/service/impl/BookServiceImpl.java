@@ -1,11 +1,11 @@
 package by.javatr.service.impl;
 
-import by.javatr.dao.IBookDAO;
-import by.javatr.dao.exception.DAOException;
-import by.javatr.dao.factory.DAOFactory;
+import by.javatr.dao.BookDAO;
+import by.javatr.exception.DAOException;
+import by.javatr.factory.DAOFactory;
 import by.javatr.entity.Book;
 import by.javatr.service.BookService;
-import by.javatr.service.exception.ServiceException;
+import by.javatr.exception.ServiceException;
 import java.util.List;
 
 public class BookServiceImpl implements BookService {
@@ -13,7 +13,7 @@ public class BookServiceImpl implements BookService {
     private static final BookServiceImpl INSTANCE = new BookServiceImpl();
 
     private DAOFactory daoFactory = DAOFactory.getInstance();
-    private IBookDAO bookDAO = daoFactory.getBookDao();
+    private BookDAO bookDAO = daoFactory.getBookDao();
 
     private BookServiceImpl() {
     }
@@ -66,10 +66,10 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public boolean deleteBook(String id) throws ServiceException {
+    public boolean deleteBookByID(String id) throws ServiceException {
         if (id == null) throw new ServiceException("The book id cannot be null");
         try {
-            return bookDAO.deleteBook(id);
+            return bookDAO.deleteBookByID(id);
         } catch (DAOException e) {
             throw new ServiceException("Could not delete the book");
         }

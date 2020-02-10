@@ -2,7 +2,7 @@ package by.javatr.view;
 
 import by.javatr.controller.Controller;
 import by.javatr.scanner.DataScanner;
-import by.javatr.service.exception.ServiceException;
+import by.javatr.exception.ServiceException;
 
 public class Menu {
     private Controller controller = new Controller();

@@ -1,7 +1,7 @@
 package by.javatr.dao.impl;
 
-import by.javatr.dao.IBookDAO;
-import by.javatr.dao.exception.DAOException;
+import by.javatr.dao.BookDAO;
+import by.javatr.exception.DAOException;
 import by.javatr.entity.Book;
 
 import java.io.*;
@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class BookDAOImpl implements IBookDAO {
+public class BookDAOImpl implements BookDAO {
 
-    private static final String fileName = "E:\\LibraryYuntsevich\\src\\by\\javatr\\IOData\\books.txt";
+    private static final String fileName = "E:\\LibraryYuntsevich\\src\\by\\javatr\\txtFiles\\books.txt";
 
     private static final BookDAOImpl INSTANCE = new BookDAOImpl();
 
@@ -42,7 +42,7 @@ public class BookDAOImpl implements IBookDAO {
     }
 
     @Override
-    public boolean deleteBook(String id) throws DAOException {
+    public boolean deleteBookByID(String id) throws DAOException {
         Book book;
         Iterator<Book> it = bookList.iterator();
         while (it.hasNext()) {

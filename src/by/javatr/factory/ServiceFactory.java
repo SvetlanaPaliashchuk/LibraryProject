@@ -1,4 +1,4 @@
-package by.javatr.service.factory;
+package by.javatr.factory;
 
 import by.javatr.service.BookService;
 import by.javatr.service.ClientService;

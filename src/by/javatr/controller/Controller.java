@@ -1,7 +1,7 @@
 package by.javatr.controller;
 
 import by.javatr.controller.command.Command;
-import by.javatr.service.exception.ServiceException;
+import by.javatr.exception.ServiceException;
 
 public final class Controller {
     private final CommandProvider provider = new CommandProvider();
