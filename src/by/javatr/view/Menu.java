@@ -11,8 +11,9 @@ public class Menu {
 
     public void start() {
         String login = signInOrRegister();
-            if (isAdmin(login))
+            if (isAdmin(login)) {
                 adminMenu();
+            }
             else readerMenu();
     }
 
@@ -20,7 +21,9 @@ public class Menu {
         String result = "";
         try {
             result = controller.executeTask("get_user_by_login " + str);
-            if (result.contains("role=ADMIN")) return true;
+            if (result.contains("role=ADMIN")) {
+                return true;
+            }
         } catch (ServiceException e) {
             return false;
         }

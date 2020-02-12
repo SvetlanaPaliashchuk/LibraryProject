@@ -15,7 +15,9 @@ public class DeleteAllUsers implements Command {
 
         try{
             isDeleted = clientService.deleteAllUsers();
-            if (isDeleted) response = "All users have been deleted";
+            if (isDeleted) {
+                response = "All users have been deleted";
+            }
             else   response = "Could not delete all users";
         }
 

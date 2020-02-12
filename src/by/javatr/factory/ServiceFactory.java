@@ -8,8 +8,8 @@ import by.javatr.service.impl.ClientServiceImpl;
 public class ServiceFactory {
     private static final ServiceFactory INSTANCE = new ServiceFactory();
 
-    private static final ClientService CLIENT_SERVICE_INSTANCE = ClientServiceImpl.getInstance();
-    private static final BookService BOOK_SERVICE_INSTANCE = BookServiceImpl.getInstance();
+    private static final ClientService CLIENT_SERVICE_INSTANCE = new ClientServiceImpl();
+    private static final BookService BOOK_SERVICE_INSTANCE = new BookServiceImpl();
 
     private ServiceFactory() {}
 

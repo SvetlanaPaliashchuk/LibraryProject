@@ -12,23 +12,18 @@ import java.util.List;
 
 public class ClientServiceImpl implements ClientService {
 
-    private static final ClientServiceImpl INSTANCE = new ClientServiceImpl();
-
     private DAOFactory daoFactory = DAOFactory.getInstance();
     private UserDAO userDAO = daoFactory.getUserDAO();
 
-    private ClientServiceImpl() {
-    }
-
-    public static ClientServiceImpl getInstance() {
-        return INSTANCE;
-    }
-
     @Override
     public boolean signIn(String login, String password) throws ServiceException {
-        if (login == null || password == null) throw new ServiceException("Please check login or password");
+        if (login == null || password == null) {
+            throw new ServiceException("Please check login or password");
+        }
         try {
-            if (userDAO.signIn(login, password)) return true;
+            if (userDAO.signIn(login, password)) {
+                return true;
+            }
         } catch (DAOException e) {
             throw new ServiceException("Please check login or password");
         }
@@ -37,7 +32,9 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void registerUser(User user) throws ServiceException {
-        if (user == null) throw new ServiceException("Please create the user!");
+        if (user == null) {
+            throw new ServiceException("Please create the user!");
+        }
         try {
             userDAO.register(user);
         } catch (DAOException e) {
@@ -60,7 +57,9 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public String getUserByLogin(String userLogin) throws ServiceException {
-        if (userLogin == null) throw new ServiceException("The user login cannot be null");
+        if (userLogin == null) {
+            throw new ServiceException("The user login cannot be null");
+        }
         try {
             return userDAO.getUserByLogin(userLogin);
         } catch (DAOException e) {
@@ -71,7 +70,9 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public boolean deleteUserByLogin(String login) throws ServiceException {
-        if (login == null) throw new ServiceException("The user to delete cannot be null");
+        if (login == null) {
+            throw new ServiceException("The user to delete cannot be null");
+        }
         boolean isDeleted;
         try {
             isDeleted = userDAO.deleteUserByLogin(login);

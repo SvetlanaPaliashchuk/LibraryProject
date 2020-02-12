@@ -9,8 +9,8 @@ public class DAOFactory {
 	
 	private static final DAOFactory INSTANCE = new DAOFactory();
 	
-	private static final UserDAO USER_DAO_INSTANCE = UserDAOImpl.getInstance();
-	private static final BookDAO BOOK_DAO_INSTANCE = BookDAOImpl.getInstance();
+	private static final UserDAO USER_DAO_INSTANCE = new UserDAOImpl();
+	private static final BookDAO BOOK_DAO_INSTANCE = new BookDAOImpl();
 	
 	private DAOFactory() {}
 	

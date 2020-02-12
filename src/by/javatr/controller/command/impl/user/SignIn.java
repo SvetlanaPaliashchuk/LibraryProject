@@ -20,7 +20,9 @@ public class SignIn implements Command {
 
         try {
             if (clientService.signIn(login, password))
+            {
                 response = "Welcome, " + login;
+            }
             else throw new ServiceException();
             //else response = "Please check login or password";
         } catch (ServiceException e) {

@@ -18,7 +18,9 @@ public class DeleteUserByLogin implements Command {
 
         try{
             if (clientService.deleteUserByLogin(login))
-            response= "The user "+ login + " has been deleted";
+            {
+                response= "The user "+ login + " has been deleted";
+            }
             else response = "The user "+ login + " has not been deleted";
         }
         catch(ServiceException e){

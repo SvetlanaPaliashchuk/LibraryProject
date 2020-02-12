@@ -24,7 +24,9 @@ public class AddBook implements Command {
 
         try {
             boolean isAdded = bookService.addBook(book);
-            if (isAdded) response = "Book has been added to the library";
+            if (isAdded) {
+                response = "Book has been added to the library";
+            }
             else response = "Error during adding book procedure";
         } catch (ServiceException e) {
             throw new ServiceException();

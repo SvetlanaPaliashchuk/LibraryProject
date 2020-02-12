@@ -18,7 +18,9 @@ public class DeleteBookByID implements Command {
         try{
 
             boolean isDeleted = bookService.deleteBookByID(id);
-            if (isDeleted) response= "The book has been deleted";
+            if (isDeleted) {
+                response= "The book has been deleted";
+            }
             else response = "There is no such book";
         }
         catch(ServiceException e){
