@@ -22,7 +22,7 @@ public class DeleteAllUsers implements Command {
         }
 
         catch(ServiceException e){
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
         return response;
     }

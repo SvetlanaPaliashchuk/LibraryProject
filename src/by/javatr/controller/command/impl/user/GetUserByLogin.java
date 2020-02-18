@@ -23,7 +23,7 @@ public class GetUserByLogin implements Command {
             }
             response = "User info:\n" + s;
         } catch (ServiceException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
 
         }
         return response;

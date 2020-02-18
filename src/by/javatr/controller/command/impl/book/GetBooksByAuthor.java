@@ -29,7 +29,7 @@ public class GetBooksByAuthor implements Command {
                 response.append("\n");
             }
         } catch (ServiceException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
         return response.toString();
     }

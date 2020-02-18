@@ -27,7 +27,7 @@ public class SignIn implements Command {
             //else response = "Please check login or password";
         } catch (ServiceException e) {
            // response = "Error during login procedure";
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
         return response;
     }

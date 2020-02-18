@@ -18,7 +18,7 @@ public class BookDAOImpl implements BookDAO {
         List<Book> bookList;
         try {
             bookList = readAllBooks();
-        } catch (IOException |ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             throw new DAOException(e);
         }
         for (Book b : bookList) {
@@ -42,7 +42,7 @@ public class BookDAOImpl implements BookDAO {
         List<Book> bookList;
         try {
             bookList = readAllBooks();
-        } catch (IOException |ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             throw new DAOException(e);
         }
         Iterator<Book> it = bookList.iterator();
@@ -67,7 +67,7 @@ public class BookDAOImpl implements BookDAO {
         List<Book> bookList;
         try {
             bookList = readAllBooks();
-        } catch (IOException |ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             throw new DAOException(e);
         }
         return bookList;
@@ -79,7 +79,7 @@ public class BookDAOImpl implements BookDAO {
         List<Book> bookList;
         try {
             bookList = readAllBooks();
-        } catch (IOException |ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             throw new DAOException(e);
         }
         for (Book book : bookList) {
@@ -96,7 +96,7 @@ public class BookDAOImpl implements BookDAO {
         List<Book> bookList;
         try {
             bookList = readAllBooks();
-        } catch (IOException |ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             throw new DAOException(e);
         }
         for (Book book : bookList) {

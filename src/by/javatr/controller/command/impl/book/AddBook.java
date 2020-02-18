@@ -29,7 +29,7 @@ public class AddBook implements Command {
             }
             else response = "Error during adding book procedure";
         } catch (ServiceException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
         return response;
     }

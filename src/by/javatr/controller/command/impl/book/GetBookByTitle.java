@@ -18,7 +18,7 @@ public class GetBookByTitle implements Command {
         try {
             response = "Book info:\n" + bookService.getBookByName(title);
         } catch (ServiceException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
         return response;
     }

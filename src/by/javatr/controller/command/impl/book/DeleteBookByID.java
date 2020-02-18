@@ -24,7 +24,7 @@ public class DeleteBookByID implements Command {
             else response = "There is no such book";
         }
         catch(ServiceException e){
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
         return response;
     }

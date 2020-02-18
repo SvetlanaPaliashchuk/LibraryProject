@@ -37,7 +37,7 @@ public class Register implements Command {
             response = "You are registered";
 
         } catch (ServiceException e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
 
         }
         return response;

@@ -24,7 +24,7 @@ public class DeleteUserByLogin implements Command {
             else response = "The user "+ login + " has not been deleted";
         }
         catch(ServiceException e){
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
         return response;
     }
