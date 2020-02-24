@@ -22,7 +22,8 @@ public class BookServiceImpl implements BookService {
                 throw new ServiceException("No books in the library");
             }
         } catch (DAOException e) {
-            throw new ServiceException("Could not get the list of books");
+            throw new ServiceException("Could not get the list of books");// потеряла реальное исключение
+            //  throw new ServiceException("Could not get the list of books", e);
         }
         return list;
     }
