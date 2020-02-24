@@ -1,7 +1,8 @@
 package by.javatr.scanner;
 
 import java.util.Scanner;
-
+// боюсь догадаться, зачем это?
+// да еще выделенное в отдельный слои
 public class DataScanner {
     public static int enterIntFromConsole() {
         Scanner sc = new Scanner(System.in);

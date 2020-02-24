@@ -12,6 +12,8 @@ import java.util.List;
 public class BookDAOImpl implements BookDAO {
 
     private static final String fileName = "E:\\Epam trainings\\Introduction to Java\\LibraryYuntsevich\\txt\\books.txt";
+    // не использовать абсолютные захадкоженные пути
+    // а то теперь хоть убеся, но для запуска в системе должен быть диск Е
 
     @Override
     public boolean addBook(Book book) throws DAOException {
@@ -23,7 +25,7 @@ public class BookDAOImpl implements BookDAO {
         }
         for (Book b : bookList) {
             if (book.getTitle().equals(b.getTitle()) && book.getAuthor().equals(b.getAuthor())) {
-                throw new DAOException("This book is already in library");
+                throw new DAOException("This book is already in library");// ну неужели наличие книги с таким же названием и автором - это настолько страшная ситуация, что нужно исключение генерировать?
             }
         }
         book.setId(generateID(bookList));
